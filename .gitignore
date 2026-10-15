@@ -1,0 +1,45 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Environments
+.venv/
+venv/
+environment/
+.env
+
+# macOS / IDE
+.DS_Store
+.vscode/
+
+# Raw and processed datasets
+data/raw/*
+!data/raw/.gitkeep
+
+data/processed/*
+!data/processed/.gitkeep
+
+# Generated artifacts
+artifacts/models/*
+!artifacts/models/.gitkeep
+
+artifacts/predictions/*
+!artifacts/predictions/.gitkeep
+
+artifacts/figures/*
+!artifacts/figures/.gitkeep
+
+artifacts/reports/*
+!artifacts/reports/.gitkeep
+
+# Model weights
+*.pt
+*.pth
+*.onnx
+
+# Training outputs
+runs/
+wandb/
