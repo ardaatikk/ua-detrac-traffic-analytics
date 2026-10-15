@@ -21,6 +21,7 @@ data/raw/*
 
 data/processed/*
 !data/processed/.gitkeep
+!data/processed/dataset_split.json
 
 # Generated artifacts
 artifacts/models/*
