@@ -1,3 +1,5 @@
+import os
+
 # General
 RANDOM_SEED = 42
 
@@ -26,3 +28,9 @@ TRACKER_TYPE = "bytetrack"
 ENABLE_SPEED_ESTIMATION = True
 ENABLE_VEHICLE_COUNTING = True
 ENABLE_TRAJECTORY_ANALYSIS = True
+
+YOLO_LABEL_PRECISION = 6
+
+SHOW_PROGRESS = (
+    os.environ.get("UA_DETRAC_SHOW_PROGRESS", "1") == "1"
+)

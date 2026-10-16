@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 
 
@@ -29,3 +30,38 @@ SEQUENCE_STATISTICS_REPORT = (
 DATASET_SPLIT_FILE = (
     PROCESSED_DATA_DIR / "dataset_split.json"
 )
+
+ANNOTATION_PREVIEW_FILE = (
+    FIGURES_DIR / "annotation_preview.png"
+)
+
+IGNORED_REGION_REPORT = (
+    REPORTS_DIR / "ignored_region_analysis.json"
+)
+
+###### YOLO
+
+YOLO_DATASET_DIR = Path(
+    os.environ.get(
+        "UA_DETRAC_YOLO_DIR",
+        str(PROCESSED_DATA_DIR / "yolo"),
+    )
+).resolve()
+
+YOLO_IMAGES_DIR = YOLO_DATASET_DIR / "images"
+YOLO_LABELS_DIR = YOLO_DATASET_DIR / "labels"
+YOLO_DATASET_YAML = YOLO_DATASET_DIR / "dataset.yaml"
+
+YOLO_CONVERSION_REPORT = Path(
+    os.environ.get(
+        "UA_DETRAC_CONVERSION_REPORT",
+        str(REPORTS_DIR / "yolo_conversion.json"),
+    )
+).resolve()
+
+YOLO_VALIDATION_REPORT = Path(
+    os.environ.get(
+        "UA_DETRAC_VALIDATION_REPORT",
+        str(REPORTS_DIR / "yolo_validation.json"),
+    )
+).resolve()
