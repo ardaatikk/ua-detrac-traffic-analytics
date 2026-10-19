@@ -2,6 +2,9 @@ from collections import Counter
 from pathlib import Path
 import json
 import xml.etree.ElementTree as ET
+from tqdm import tqdm
+
+from src.config.settings import SHOW_PROGRESS
 
 from src.config.paths import (
     RAW_DATA_DIR,
@@ -215,7 +218,15 @@ def analyze_frame_coverage(
         config = ANNOTATION_FILES[split]
         annotation_dir = RAW_DATA_DIR / config["directory"]
 
-        for sequence_name in sorted(sequences):
+        for sequence_name in tqdm(
+            sorted(sequences),
+            desc=f"Checking coverage ({split})",
+            unit="sequence",
+            dynamic_ncols=True,
+            position=0,
+            leave=False,
+            disable=not SHOW_PROGRESS,
+        ):
             sequence_dir = IMAGES_DIR / sequence_name
             xml_path = annotation_dir / f"{sequence_name}.xml"
 
@@ -298,7 +309,15 @@ def validate_dataset() -> dict:
                 f"{len(xml_files)}"
             )
 
-        for xml_path in xml_files:
+        for xml_path in tqdm(
+            xml_files,
+            desc=f"Validating {split}",
+            unit="sequence",
+            dynamic_ncols=True,
+            position=0,
+            leave=False,
+            disable=not SHOW_PROGRESS,
+        ):
             validate_sequence(
                 xml_path,
                 statistics,

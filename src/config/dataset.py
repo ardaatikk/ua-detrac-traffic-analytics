@@ -57,3 +57,37 @@ REPORT_UNANNOTATED_SEQUENCES = True
 
 # Sequence analysis
 ANALYSIS_SPLIT = "train"
+
+# Annotation visualization
+PREVIEW_SEQUENCE = "MVI_20011"
+PREVIEW_FRAME = 53
+
+PREVIEW_BOX_COLOR = (0, 255, 0)
+PREVIEW_TEXT_COLOR = (255, 255, 255)
+PREVIEW_BOX_THICKNESS = 2
+PREVIEW_FONT_SCALE = 0.5
+
+PREVIEW_IGNORED_REGION_COLOR = (0, 0, 255)
+PREVIEW_IGNORED_REGION_THICKNESS = 2
+
+IGNORE_ANALYSIS_SPLIT = "train"
+IGNORE_OVERLAP_THRESHOLD = 0.10
+
+IGNORE_OVERLAP_BINS = (
+    0.10,
+    0.25,
+    0.50,
+    0.75,
+    0.90,
+    1.00,
+)
+
+YOLO_SPLITS = ("train", "val", "test")
+
+YOLO_CLASS_NAMES = tuple(
+    name
+    for name, class_id in sorted(
+        VEHICLE_CLASSES.items(),
+        key=lambda item: item[1],
+    )
+)
