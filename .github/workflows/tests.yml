@@ -1,0 +1,40 @@
+name: Tests
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      PYTHONNOUSERSITE: '1'
+      MPLBACKEND: Agg
+      YOLO_CONFIG_DIR: ${{ runner.temp }}/ultralytics
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+          cache-dependency-path: |
+            requirements.txt
+            requirements-dev.txt
+      - name: Install CPU dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install torch==2.14.0 torchvision==0.29.0 --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install -r requirements-dev.txt
+          python -m pip check
+      - name: Test with synthetic data and mocked training
+        run: python -m pytest -q
+      - name: Check documented command entry points
+        run: |
+          python -m src.pipeline.prepare_dataset --help
+          python -m src.data.create_smoke_dataset --help
+          python -m src.training.train --help
