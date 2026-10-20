@@ -15,8 +15,9 @@ jobs:
     env:
       PYTHONNOUSERSITE: '1'
       MPLBACKEND: Agg
-      YOLO_CONFIG_DIR: ${{ runner.temp }}/ultralytics
     steps:
+      - name: Configure temporary Ultralytics directory
+        run: echo "YOLO_CONFIG_DIR=$RUNNER_TEMP/ultralytics" >> "$GITHUB_ENV"
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
