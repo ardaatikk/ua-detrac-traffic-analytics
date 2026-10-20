@@ -65,3 +65,5 @@ YOLO_VALIDATION_REPORT = Path(
         str(REPORTS_DIR / "yolo_validation.json"),
     )
 ).resolve()
+# Kept separate from the complete YOLO dataset, including environment overrides.
+YOLO_SMOKE_DIR = YOLO_DATASET_DIR.with_name(YOLO_DATASET_DIR.name + '_smoke')

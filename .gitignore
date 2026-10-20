@@ -44,3 +44,5 @@ artifacts/reports/*
 # Training outputs
 runs/
 wandb/
+# Local training results
+artifacts/training/
